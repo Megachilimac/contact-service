@@ -1,0 +1,40 @@
+service: aws-ses-serverless-example
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: development
+  region: us-east-2
+
+plugins:
+  - serverless-webpack
+
+functions:
+  sendMail:
+    handler: src/handler.sendMail
+    description: Send email using SES service.
+    memorySize: 1024
+    timeout: 5
+    events:
+      - http:
+          path: sendMail
+          method: post
+          integration: lambda
+          cors: true
+          response:
+            headers:
+              Access-Control-Allow-Origin: "'*'"
+  verifyCaptcha:
+    handler: src/captcha.verify
+    description: Verify captcha response.
+    memorySize: 1024
+    timeout: 5
+    events:
+      - http:
+          path: captchaVerify
+          method: post
+          integration: lambda
+          cors: true
+          response:
+            headers:
+              Access-Control-Allow-Origin: "'*'"
