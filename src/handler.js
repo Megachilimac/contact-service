@@ -57,7 +57,12 @@ const sendMail = async (event) => {
   \n${messageBody}`;
 
   const sendEmailCommand = createSendEmailCommand(
-    ["ke0cci@arrl.net", "inan@aicodix.de", "w4ckx@pekt.org"],
+    [
+      "ke0cci@arrl.net",
+      "inan@aicodix.de",
+      "w4ckx@pekt.org",
+      "neil@askneil.com",
+    ],
     "ke0cci@arrl.net",
     [replyTo],
     formattedMessage,
